@@ -1,4 +1,4 @@
-name: Deploy Amazon EKS
+name: Deploy FrontEnd Application
 on:
   push:
     branches:
