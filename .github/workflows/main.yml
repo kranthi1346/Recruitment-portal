@@ -28,7 +28,7 @@ jobs:
 deploy: 
         steps:
         - name: SSH into server
-          users: ssh username@ip -p password
+          uses: ssh username@ip -p password
         - name: Pull the image
           uses: docker pull RT-FRONTEND
         - name: Run the container
