@@ -15,7 +15,7 @@ RUN npm install next -g
 COPY . .
 
 # Expose the port
-EXPOSE 80
+EXPOSE 3000
 
 # Start the application
 CMD ["npm", "start"]
