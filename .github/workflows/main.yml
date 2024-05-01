@@ -9,22 +9,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-     # - name: Checkout source
-      #  uses: actions/checkout@v4
+      - name: Checkout source
+        uses: actions/checkout@v4
       - name: Login to docker hub 
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}       
-      #- name: Build docker image
-       # run: docker build -t kranthi1207/RP-frontend-artifact .  
-      #- name: Publish image to docker hub
-       # run: docker push kranthi1207/RP-frontend-artifact:latest
+      - name: Build docker image
+        run: docker build -t kranthi1207/RP-frontend-artifact .  
+      - name: Publish image to docker hub
+        run: docker push kranthi1207/RP-frontend-artifact:latest
         
-  #deploy:
-   # needs: build
-    #runs-on: self-hosted
-    #steps:
-     # - name: Pull image from docker hub
-      #  run: docker pull kranthi1207/RP-frontend-artifact:latest
-      #- name: Delete old container
-      #  run: docker rm -f RP-frontend-artifact
-      #- name: Run docker container
-       # run: docker run -d -p 80:80 --name RP-frontend-artifact-container kranthi1207/RP-frontend-artifact
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull kranthi1207/RP-frontend-artifact:latest
+      - name: Delete old container
+        run: docker rm -f RP-frontend-artifact
+      - name: Run docker container
+        run: docker run -d -p 80:80 --name RP-frontend-artifact-container kranthi1207/RP-frontend-artifact
