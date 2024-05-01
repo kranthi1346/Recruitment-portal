@@ -1,43 +1,30 @@
-name: Deploy FrontEnd Application
+name: Deploy Nodejs Application
+
 on:
-#  workflow_dispatch:
- #   inputs:
-  #    environment:
-   #     description: 'Environment to run tests against'
-    #    type: environment
-     #   required: true
-  push:
+  push: 
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Install npm 
-        run: sudo apt install nodejs
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}       
+      - name: Build docker image
+        run: docker build -t kranthi1207/RP-frontend-artifact .  
+      - name: Publish image to docker hub
+        run: docker push kranthi1207/RP-frontend-artifact:latest
         
-    #  - name: Login to Dockerhub
-     #   uses: docker/login-action@v1
-      #  with:
-       #   username:${{secrets.DOCKERHUB_USERNAME}}
-        #  password:${{secrets.DOCKERHUB_TOKEN}}
-
-      #- name: Build Docker Image
-       # uses: docker build -t RT-FRONTEND .
-
-      #- name: push docker image
-       # uses: docker/build-push-action@v2
-        #with:
-         # push: true
-          #tags: kranthi1207/RP_Frontend:latest
-          
-#deploy: 
- #       steps:
-  #      - name: SSH into server
-   #       uses: ssh username@ip -p password
-    #    - name: Pull the image
-     #     uses: docker pull RT-FRONTEND
-      #  - name: Run the container
-       #   uses: docker run -itd -name RT-frontend-UI -p 8080:3000 RT-FRONTEND
-        #- name: Verify the service
-         # uses: docker ps | grep "RT-frontend-UI"
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull kranthi1207/RP-frontend-artifact:latest
+      - name: Delete old container
+        run: docker rm -f RP-frontend-artifact
+      - name: Run docker container
+        run: docker run -d -p 80:80 --name RP-frontend-artifact-container kranthi1207/RP-frontend-artifact
