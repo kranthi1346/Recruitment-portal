@@ -12,21 +12,21 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
       - name: Login to docker hub 
-        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}       
+        run: sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}       
       - name: Build docker image
-        run: docker build -t kranthi1207/rp-frontend-artifact .  
+        run: sudo docker build -t kranthi1207/rp-frontend-artifact .  
       - name: Publish image to docker hub 
-        run: docker push kranthi1207/rp-frontend-artifact:latest
+        run: sudo docker push kranthi1207/rp-frontend-artifact:latest
         
   deploy:
     needs: build
     runs-on: self-hosted
     steps:
       - name: Login to docker hub 
-        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }} 
+        run: sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }} 
       - name: Pull image from docker hub
-        run: docker pull kranthi1207/rp-frontend-artifact:latest
+        run: sudo docker pull kranthi1207/rp-frontend-artifact:latest
       - name: Delete old container
-        run: docker rm -f rp-frontend-artifact
+        run: sudo docker rm -f rp-frontend-artifact
       - name: Run docker container
-        run: docker run -d -p 3000:3000 --name rp-frontend-artifact-container kranthi1207/rp-frontend-artifact
+        run: sudo docker run -d -p 3000:3000 --name rp-frontend-artifact-container kranthi1207/rp-frontend-artifact
