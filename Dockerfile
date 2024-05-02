@@ -14,8 +14,8 @@ RUN npm cache clean
 RUN npm install 
 # RUN npm install @sentry/nextjs --legacy-peer-deps 
 # RUN npm install -D @swc/cli @swc/core --legacy-peer-deps 
-RUN npm run build
-
+RUN npm start
+# RUN npm run build
 
 # Expose the port
 EXPOSE 3000
