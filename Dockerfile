@@ -21,4 +21,4 @@ RUN npm start --force
 EXPOSE 3000
 
 # Start the application
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
