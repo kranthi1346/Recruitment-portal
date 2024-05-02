@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 3000
 
 # Start the application
-CMD ["NODE_ENV=development npm start"]
+CMD ["npm run dev"]
