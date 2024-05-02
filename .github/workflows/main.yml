@@ -16,7 +16,7 @@ jobs:
       - name: Build docker image
         run: sudo docker build -t kranthi1207/rp-frontend-artifact .  
       - name: Publish image to docker hub 
-        run: sudo docker push kranthi1207/rp-frontend-artifact:latest
+        run: sudo docker push kranthi1207/rp-frontend-artifact:latest 
         
   deploy:
     needs: build
