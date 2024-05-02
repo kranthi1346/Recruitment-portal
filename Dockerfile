@@ -11,7 +11,8 @@ COPY . .
 
 # Install dependencies
 # RUN npm cache clean --force
-RUN npm install --force
+# RUN npm install --force
+RUN npm install -D @swc/cli @swc/core --legacy-peer-deps --force
 RUN npm run build
 
 
