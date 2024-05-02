@@ -10,11 +10,11 @@ COPY . .
 # COPY package*.json ./
 
 # Install dependencies
-RUN npm cache clean 
-RUN npm install 
+RUN npm cache clean -- force
+RUN npm install --force
 # RUN npm install @sentry/nextjs --legacy-peer-deps 
 # RUN npm install -D @swc/cli @swc/core --legacy-peer-deps 
-RUN npm start
+RUN npm start --force
 # RUN npm run build
 
 # Expose the port
