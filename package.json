@@ -11,7 +11,7 @@
     "build:staging": "set NODE_ENV=staging && next build",
     "build:preprod": "set NODE_ENV=preprod && next build",
     "build:prod": "set NODE_ENV=production && next build",
-    "start": "NODE_ENV=development npm start",
+    "start": "next start",
     "lint": "next lint,eslint --ext .js,.jsx,.ts,.tsx src --cache --cache-location ./.eslintlocalcache",
     "lint-fix": "next lint,eslint --ext .js,.jsx,.ts,.tsx src --cache --cache-location ./.eslintlocalcache",
     "lint-reset-cache": "rm -f ./.eslintlocalcache",
