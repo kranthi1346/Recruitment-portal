@@ -21,4 +21,4 @@ RUN npm install next -g
 EXPOSE 3000
 
 # Start the application
-CMD ["NODE_ENV=development", "npm", "start"]
+CMD ["development", "npm", "start"]
