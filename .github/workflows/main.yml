@@ -27,6 +27,6 @@ jobs:
       - name: Pull image from docker hub
         run: sudo docker pull kranthi1207/rp-frontend-artifact:latest
       - name: Delete old container
-        run: sudo docker rm -f rp-frontend-artifact
+        run: sudo docker rm -f rp-frontend-artifact-container
       - name: Run docker container
         run: sudo docker run -itd -p 8080:3000 --name rp-frontend-artifact-container kranthi1207/rp-frontend-artifact:latest
