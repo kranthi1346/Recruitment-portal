@@ -12,6 +12,7 @@ COPY . .
 # Install dependencies
 # RUN npm cache clean --force
 RUN npm i -f && npm run build 
+
 # RUN npm install @sentry/nextjs --legacy-peer-deps 
 # RUN npm install -D @swc/cli @swc/core --legacy-peer-deps 
 # RUN npm install next -g
@@ -21,4 +22,4 @@ RUN npm i -f && npm run build
 EXPOSE 3000
 
 # Start the application
-CMD ["npm", "run", "start"]
+CMD ["npm", "start", "&"]
