@@ -1,8 +1,4 @@
-import Navbar from "./components/navbar";
-import Sidebar from "./components/sidebar";
-import { FC } from "react";
-
-const Home: FC<{ children?: React.ReactNode }> = ({ children }) => {
+const Home = () => {
   return <div>local_3000_page</div>;
 };
 
