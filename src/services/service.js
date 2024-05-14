@@ -28,25 +28,8 @@ const headersContentType = () => ({
 
 //For PostFiles starts
 const getDefaultFileConfig = () => ({
-  Authorization: `Bearer ${token}`,
+  Authorization: `Bearer ${getToken()}`,
 });
-const getOCP_API_KeyConfig = () => ({
-  // 'Content-Type': 'application/json',
-  'Ocp-Apim-Subscription-Key': `${OCP_APIM_SUBSCRIPTION_KEY}`,
-  Consumer: `${CONSUMER}`,
-});
-
-const getOCP_API_KeyConfig_for_SEP = () => ({
-  'Content-Type': 'application/json',
-  'Cache-Control': 'no-cache',
-  'Ocp-Apim-Subscription-Key': `${OCP_APIM_SUBSCRIPTION_KEY}`,
-  Consumer: `${CONSUMER}`,
-});
-
 //For PostFiles ends
 
 export const getPostlist = () => HttpService.get(GET_ALL_POST, {}, {});
-
-
-export const getSepElectionType = (sepDataObj) =>
-  HttpService.get(`${GET_SEP_ELECTION_TYPE}`, sepDataObj, getOCP_API_KeyConfig_for_SEP());
